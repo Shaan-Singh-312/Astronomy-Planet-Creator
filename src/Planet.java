@@ -67,7 +67,7 @@ public class Planet {
 
     @Override
     public String toString() {
-            return "Name: " + name + "\n" + "Orbits : SUN" + "\n" + "Mass (in earth masses): " + massInEarthMasses + "\n" + "Mass (in kg): " + calculateMassKg() + "kg\n" + "Radius (in earth radii): " + massInEarthMasses + " \n" + "Radius (in km): " + calculateRadius() + "\n" + "Gravitational Field Strength: " + calculateGravity() + " N/kg \n" + "Distance from Sun: " + meanOrbitalDistanceAU + " AU\n" + "Orbital Period: " + calculateOrbitalPeriod() + "years\n" + "Rotational Period: " + rotationalPeriod + "hrs\n" + "Moons/Satellites: " + Arrays.toString(moons);
+            return "Name: " + name + "\n" + "Orbits: SUN" + "\n" + "Mass (in earth masses): " + massInEarthMasses + "\n" + "Mass (in kg): " + calculateMassKg() + "kg\n" + "Radius (in earth radii): " + massInEarthMasses + " \n" + "Radius (in km): " + calculateRadius() + "\n" + "Gravitational Field Strength: " + calculateGravity() + " N/kg \n" + "Distance from Sun: " + meanOrbitalDistanceAU + " AU\n" + "Orbital Period: " + calculateOrbitalPeriod() + "years\n" + "Rotational Period: " + rotationalPeriod + "hrs\n" + "Moons/Satellites: " + Arrays.toString(moons);
 
     }
 }
