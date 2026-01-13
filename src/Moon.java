@@ -26,11 +26,11 @@ public class Moon {
         massOfOrbitingBodyInKg = ob.calculateMassKg();
     }
     public double calculateGravity(){
-        return massInKg / Math.pow(radiusInKm/1000,2) * 6.67 * Math.pow(10,-11);
+        return massInKg / Math.pow(radiusInKm * 1000,2) * 6.67 * Math.pow(10,-11);
     }
 
     public double calculateOrbitalPeriod(){
-        return Math.sqrt((4* Math.PI * Math.PI * Math.pow((meanOrbitalDistanceKm/1000),3)) / (massOfOrbitingBodyInKg * 6.67 * Math.pow(10,-11))) /(60*60*24*365);
+        return Math.sqrt((4* Math.PI * Math.PI * Math.pow((meanOrbitalDistanceKm * 1000),3)) / (massOfOrbitingBodyInKg * 6.67 * Math.pow(10,-11))) /(60*60*24*365);
     }
 
     @Override
