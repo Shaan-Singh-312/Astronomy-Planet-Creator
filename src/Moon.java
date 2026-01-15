@@ -1,5 +1,5 @@
 public class Moon {
-    ///Stores the name of the planet
+    ///Stores the name of the moon
     private String name = "UNKNOWN";
     ///Stores The planet the moon is orbiting
     private final Planet orbitingBody;
@@ -71,12 +71,12 @@ public class Moon {
     }
 
     /**
-     * This returns a string with a collection of the relevant information about a moon in the following order all on new lines: Name, What it orbits, Mass, Radius, Gravitational Field Strength, Distance from planet, Orbital period, and rotational period
+     * This returns a string with a collection of the relevant information about the Planet in the following order all on new lines: Name, What it orbits, Mass, Radius, Gravitational Field Strength, Distance from Star, Orbital period, and rotational period
      * This method overrides the default {@code Object.toString()} method.
-     * @return A string representation of the moon
+     * @return A string representation of the planet
      */
     @Override
     public String toString() {
-        return "Name: " + name + "\n" + "Orbits: " + orbitingBody.getName() + "\n" + "Mass (in kg): " + massInKg + "kg\n" + "Radius (in km): " + radiusInKm + "\n" + "Gravitational Field Strength: " + calculateGravity() + " N/kg \n" + "Distance from Planet: " + meanOrbitalDistanceKm + " km\n" + "Orbital Period: " + calculateOrbitalPeriod() + "years\n" + "Rotational Period: " + rotationalPeriod + "hrs\n";
+        return "Name: " + name + "\n" + "Orbits: " + orbitingBody.getName() + "\n" + "Mass (in kg): " + massInKg + "kg\n" + "Radius (in km): " + radiusInKm + "\n" + "Gravitational Field Strength: " + calculateGravity() + " N/kg \n" + "Distance from Star: " + meanOrbitalDistanceKm + " km\n" + "Orbital Period: " + calculateOrbitalPeriod() + "years\n" + "Rotational Period: " + rotationalPeriod + "hrs\n";
     }
 }
