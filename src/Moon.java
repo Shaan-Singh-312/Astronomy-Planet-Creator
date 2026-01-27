@@ -1,4 +1,4 @@
-public class Moon {
+public class Moon extends Astronomical_Object{
     ///Stores the name of the moon
     private String name = "UNKNOWN";
     ///Stores The planet the moon is orbiting
@@ -57,7 +57,7 @@ public class Moon {
      * @return a double representing the gravitational field strength in Newtons per kilogram
      */
 
-    public double calculateGravity() {
+    public double calculateGravityNewtonsPerMeter() {
         return massInKg / Math.pow(radiusInKm * 1000, 2) * 6.67 * Math.pow(10, -11);
     }
 
@@ -66,7 +66,7 @@ public class Moon {
      * @return a double representing the amount of years one rotation takes
      */
 
-    public double calculateOrbitalPeriod() {
+    public double calculateOrbitalPeriodYears() {
         return Math.sqrt((4 * Math.PI * Math.PI * Math.pow((meanOrbitalDistanceKm * 1000), 3)) / (massOfOrbitingBodyInKg * 6.67 * Math.pow(10, -11))) / (60 * 60 * 24 * 365);
     }
 
@@ -77,6 +77,6 @@ public class Moon {
      */
     @Override
     public String toString() {
-        return "Name: " + name + "\n" + "Orbits: " + orbitingBody.getName() + "\n" + "Mass (in kg): " + massInKg + "kg\n" + "Radius (in km): " + radiusInKm + "\n" + "Gravitational Field Strength: " + calculateGravity() + " N/kg \n" + "Distance from Star: " + meanOrbitalDistanceKm + " km\n" + "Orbital Period: " + calculateOrbitalPeriod() + "years\n" + "Rotational Period: " + rotationalPeriod + "hrs\n";
+        return "Name: " + name + "\n" + "Orbits: " + orbitingBody.getName() + "\n" + "Mass (in kg): " + massInKg + "kg\n" + "Radius (in km): " + radiusInKm + "\n" + "Gravitational Field Strength: " + calculateGravityNewtonsPerMeter() + " N/kg \n" + "Distance from Star: " + meanOrbitalDistanceKm + " km\n" + "Orbital Period: " + calculateOrbitalPeriodYears() + "years\n" + "Rotational Period: " + rotationalPeriod + "hrs\n";
     }
 }

@@ -1,16 +1,6 @@
 import java.util.Arrays;
 
-public class Planet {
-    ///Stores the name of the moon
-    private String name = "UNKNOWN";
-    ///Stores a list of the moons of the planet
-    private String[] moons = {"None"};
-    ///Stores the average distance between the planet and the Sun in AUs
-    private final double meanOrbitalDistanceAU;
-    /// Stores the length of one day on the planet
-    private final double rotationalPeriod;
-    /// Stores mass of the planet in earth masses
-    private final double massInEarthMasses;
+public class Planet extends Astronomical_Object{
     /// Stores the radius of the planet in earth radii
     private final double radiusInEarthRadii;
 
@@ -23,9 +13,9 @@ public class Planet {
      *
      **/
     public Planet(double orbitalDistance, double rotationPeriod, double mass, double radii) {
-        meanOrbitalDistanceAU = orbitalDistance;
+        meanOrbitalDistance = orbitalDistance;
         rotationalPeriod = rotationPeriod;
-        massInEarthMasses = mass;
+        this.mass = mass;
         radiusInEarthRadii = radii;
     }
 
@@ -39,9 +29,9 @@ public class Planet {
      *
      **/
     public Planet(double orbitalDistance, double rotationPeriod, double mass, double radii, String n) {
-        meanOrbitalDistanceAU = orbitalDistance;
+        meanOrbitalDistance = orbitalDistance;
         rotationalPeriod = rotationPeriod;
-        massInEarthMasses = mass;
+        this.mass = mass;
         radiusInEarthRadii = radii;
         name = n;
     }
@@ -54,12 +44,12 @@ public class Planet {
      * @param radii The radius of the moon in kilometers
      * @param moons A list of moons of the planet
      **/
-    public Planet(double orbitalDistance, double rotationPeriod, double mass, double radii, String[] moons) {
-        meanOrbitalDistanceAU = orbitalDistance;
+    public Planet(double orbitalDistance, double rotationPeriod, double mass, double radii, Astronomical_Object[] moons) {
+        meanOrbitalDistance = orbitalDistance;
         rotationalPeriod = rotationPeriod;
-        massInEarthMasses = mass;
+        this.mass = mass;
         radiusInEarthRadii = radii;
-        this.moons = moons;
+        orbitingbodies = moons;
     }
 
     /**
@@ -71,13 +61,13 @@ public class Planet {
      * @param moon A list of moons of the planet
      * @param n The name of the planet
      **/
-    public Planet(double orbitalDistance, double rotationPeriod, double mass, double radii, String n, String[] moon) {
-        meanOrbitalDistanceAU = orbitalDistance;
+    public Planet(double orbitalDistance, double rotationPeriod, double mass, double radii, String n, Astronomical_Object[] moon) {
+        meanOrbitalDistance = orbitalDistance;
         rotationalPeriod = rotationPeriod;
-        massInEarthMasses = mass;
+        this.mass = mass;
         radiusInEarthRadii = radii;
         name = n;
-        this.moons = moon;
+        orbitingbodies = moon;
     }
 
     /// @return the name of the Planet
@@ -89,8 +79,8 @@ public class Planet {
      * Used to calculate the gravitational field strength of the planet at its surface
      * @return a double representing the gravitational field strength in Newtons per kilogram
      */
-    public double calculateGravity() {
-        return massInEarthMasses / Math.pow(radiusInEarthRadii, 2) * 9.81;
+    public double calculateGravityNewtonsPerKilogram() {
+        return mass / Math.pow(radiusInEarthRadii, 2) * 9.81;
     }
 
 
@@ -98,17 +88,17 @@ public class Planet {
      * Calculates the time the planet takes to complete one revolution around its Star
      * @return a double representing the amount of years one rotation takes
      */
-    public double calculateOrbitalPeriod() {
-        return Math.sqrt(Math.pow(meanOrbitalDistanceAU, 3));
+    public double calculateOrbitalPeriodYears() {
+        return Math.sqrt(Math.pow(meanOrbitalDistance, 3));
     }
 
     /// @return a double representing the mass of the planet in kilograms
     public double calculateMassKg() {
-        return massInEarthMasses * 5.94 * Math.pow(10, 24);
+        return mass * 5.94 * Math.pow(10, 24);
     }
 
     /// @return a double representing the radius of the planet in kilometers
-    public double calculateRadius() {
+    public double calculateRadiusKg() {
         return radiusInEarthRadii * 6371;
     }
 
@@ -119,7 +109,7 @@ public class Planet {
      */
     @Override
     public String toString() {
-        return "Name: " + name + "\n" + "Orbits: SUN" + "\n" + "Mass (in earth masses): " + massInEarthMasses + "\n" + "Mass (in kg): " + calculateMassKg() + "kg\n" + "Radius (in earth radii): " + massInEarthMasses + " \n" + "Radius (in km): " + calculateRadius() + "\n" + "Gravitational Field Strength: " + calculateGravity() + " N/kg \n" + "Distance from Sun: " + meanOrbitalDistanceAU + " AU\n" + "Orbital Period: " + calculateOrbitalPeriod() + "years\n" + "Rotational Period: " + rotationalPeriod + "hrs\n" + "Moons/Satellites: " + Arrays.toString(moons);
+        return "Name: " + name + "\n" + "Orbits: SUN" + "\n" + "Mass (in earth masses): " + mass + "\n" + "Mass (in kg): " + calculateMassKg() + "kg\n" + "Radius (in earth radii): " + mass + " \n" + "Radius (in km): " + calculateRadiusKg() + "\n" + "Gravitational Field Strength: " + calculateGravityNewtonsPerKilogram() + " N/kg \n" + "Distance from Sun: " + meanOrbitalDistance + " AU\n" + "Orbital Period: " + calculateOrbitalPeriodYears() + "years\n" + "Rotational Period: " + rotationalPeriod + "hrs\n" + "Moons/Satellites: " + Arrays.toString(orbitingbodies);
 
     }
 }
