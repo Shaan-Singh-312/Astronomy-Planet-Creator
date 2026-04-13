@@ -1,8 +1,11 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class Planet extends Astronomical_Object{
     /// Stores the radius of the planet in earth radii
-    private final double radiusInEarthRadii;
+    private double radiusInEarthRadii;
+    private ArrayList<Astronomical_Object> orbitingbodies;
 
     /**
      * Creates a planet object with no name and no moons
@@ -17,6 +20,7 @@ public class Planet extends Astronomical_Object{
         rotationalPeriod = rotationPeriod;
         this.mass = mass;
         radiusInEarthRadii = radii;
+        name = "UNKNOWN";
     }
 
     /**
@@ -44,12 +48,13 @@ public class Planet extends Astronomical_Object{
      * @param radii The radius of the moon in kilometers
      * @param moons A list of moons of the planet
      **/
-    public Planet(double orbitalDistance, double rotationPeriod, double mass, double radii, Astronomical_Object[] moons) {
+    public Planet(double orbitalDistance, double rotationPeriod, double mass, double radii, ArrayList<Astronomical_Object> moons) {
         meanOrbitalDistance = orbitalDistance;
         rotationalPeriod = rotationPeriod;
         this.mass = mass;
         radiusInEarthRadii = radii;
         orbitingbodies = moons;
+        name = "UNKNOWN";
     }
 
     /**
@@ -61,7 +66,7 @@ public class Planet extends Astronomical_Object{
      * @param moon A list of moons of the planet
      * @param n The name of the planet
      **/
-    public Planet(double orbitalDistance, double rotationPeriod, double mass, double radii, String n, Astronomical_Object[] moon) {
+    public Planet(double orbitalDistance, double rotationPeriod, double mass, double radii, String n, ArrayList<Astronomical_Object> moon) {
         meanOrbitalDistance = orbitalDistance;
         rotationalPeriod = rotationPeriod;
         this.mass = mass;
@@ -70,9 +75,23 @@ public class Planet extends Astronomical_Object{
         orbitingbodies = moon;
     }
 
-    /// @return the name of the Planet
-    public String getName() {
-        return name;
+    public ArrayList<Astronomical_Object> getOrbitingbodies() {
+        return orbitingbodies;
+    }
+
+    public double getRadiusInEarthRadii() {
+        return radiusInEarthRadii;
+    }
+
+    public void setOrbitingbodies(ArrayList<Astronomical_Object> orbitingbodies) {
+        this.orbitingbodies = orbitingbodies;
+    }
+    public void addOrbitingBody(Astronomical_Object body){
+        this.orbitingbodies.add(body);
+    }
+
+    public void setRadiusInEarthRadii(double radiusInEarthRadii) {
+        this.radiusInEarthRadii = radiusInEarthRadii;
     }
 
     /**
@@ -98,7 +117,7 @@ public class Planet extends Astronomical_Object{
     }
 
     /// @return a double representing the radius of the planet in kilometers
-    public double calculateRadiusKg() {
+    public double calculateRadiusKm() {
         return radiusInEarthRadii * 6371;
     }
 
@@ -109,7 +128,7 @@ public class Planet extends Astronomical_Object{
      */
     @Override
     public String toString() {
-        return "Name: " + name + "\n" + "Orbits: SUN" + "\n" + "Mass (in earth masses): " + mass + "\n" + "Mass (in kg): " + calculateMassKg() + "kg\n" + "Radius (in earth radii): " + mass + " \n" + "Radius (in km): " + calculateRadiusKg() + "\n" + "Gravitational Field Strength: " + calculateGravityNewtonsPerKilogram() + " N/kg \n" + "Distance from Sun: " + meanOrbitalDistance + " AU\n" + "Orbital Period: " + calculateOrbitalPeriodYears() + "years\n" + "Rotational Period: " + rotationalPeriod + "hrs\n" + "Moons/Satellites: " + Arrays.toString(orbitingbodies);
+        return "Name: " + name + "\n" + "Orbits: SUN" + "\n" + "Mass (in earth masses): " + mass + "\n" + "Mass (in kg): " + calculateMassKg() + "kg\n" + "Radius (in earth radii): " + mass + " \n" + "Radius (in km): " + calculateRadiusKm() + "\n" + "Gravitational Field Strength: " + calculateGravityNewtonsPerKilogram() + " N/kg \n" + "Distance from Sun: " + meanOrbitalDistance + " AU\n" + "Orbital Period: " + calculateOrbitalPeriodYears() + "years\n" + "Rotational Period: " + rotationalPeriod + "hrs\n" + "Moons/Satellites: " + orbitingbodies.stream().map(Astronomical_Object::getName).collect(Collectors.joining(", "));
 
     }
 }

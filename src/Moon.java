@@ -1,14 +1,6 @@
 public class Moon extends Astronomical_Object{
-    ///Stores the name of the moon
-    private String name = "UNKNOWN";
     ///Stores The planet the moon is orbiting
     private final Planet orbitingBody;
-    ///Stores the average distance between the planet and the moon
-    private final double meanOrbitalDistanceKm;
-    /// Stores the length of one day on the moon
-    private final double rotationalPeriod;
-    /// Stores the mass of the moon
-    private final double massInKg;
     /// Stores the radius of the moon
     private final double radiusInKm;
     /// Stores the mass of the planet the moon is orbiting
@@ -17,36 +9,39 @@ public class Moon extends Astronomical_Object{
     /**
      * Creates a moon object with no name
      * @param ob The body the moon orbits
-     * @param orbitalDistance The mean distance from the planet in kilometers
+     * @param orbitalDistanceKm The mean distance from the planet in kilometers
      * @param rotationPeriod The length of one day on the moon measured in hours
      * @param mass The mass of the moon in kilograms
      * @param radii The radius of the moon in kilometers
      *
 **/
-    public Moon(Planet ob, double orbitalDistance, double rotationPeriod, double mass, double radii) {
+    public Moon(Planet ob, double orbitalDistanceKm, double rotationPeriod, double mass, double radii) {
         orbitingBody = ob;
-        meanOrbitalDistanceKm = orbitalDistance;
+        orbitingBody.addOrbitingBody(this);
+        meanOrbitalDistance = orbitalDistanceKm;
         rotationalPeriod = rotationPeriod;
-        massInKg = mass;
+        this.mass = mass;
         radiusInKm = radii;
         massOfOrbitingBodyInKg = ob.calculateMassKg();
+        name = "UNKNOWN";
     }
 
     /**
      * Creates a moon object with a name
      * @param ob The body the moon orbits
-     * @param orbitalDistance The mean distance from the planet in kilometers
+     * @param orbitalDistanceKm The mean distance from the planet in kilometers
      * @param rotationPeriod The length of one day on the moon measured in hours
      * @param mass The mass of the moon in kilograms
      * @param radii The radius of the moon in kilometers
      * @param n The name of the moon
      **/
 
-    public Moon(Planet ob, double orbitalDistance, double rotationPeriod, double mass, double radii, String n) {
+    public Moon(Planet ob, double orbitalDistanceKm, double rotationPeriod, double mass, double radii, String n) {
         orbitingBody = ob;
-        meanOrbitalDistanceKm = orbitalDistance;
+        orbitingBody.addOrbitingBody(this);
+        meanOrbitalDistance = orbitalDistanceKm;
         rotationalPeriod = rotationPeriod;
-        massInKg = mass;
+        this.mass = mass;
         radiusInKm = radii;
         name = n;
         massOfOrbitingBodyInKg = ob.calculateMassKg();
@@ -58,7 +53,7 @@ public class Moon extends Astronomical_Object{
      */
 
     public double calculateGravityNewtonsPerMeter() {
-        return massInKg / Math.pow(radiusInKm * 1000, 2) * 6.67 * Math.pow(10, -11);
+        return mass / Math.pow(radiusInKm * 1000, 2) * 6.67 * Math.pow(10, -11);
     }
 
     /**
@@ -67,7 +62,7 @@ public class Moon extends Astronomical_Object{
      */
 
     public double calculateOrbitalPeriodYears() {
-        return Math.sqrt((4 * Math.PI * Math.PI * Math.pow((meanOrbitalDistanceKm * 1000), 3)) / (massOfOrbitingBodyInKg * 6.67 * Math.pow(10, -11))) / (60 * 60 * 24 * 365);
+        return Math.sqrt((4 * Math.PI * Math.PI * Math.pow((meanOrbitalDistance * 1000), 3)) / (massOfOrbitingBodyInKg * 6.67 * Math.pow(10, -11))) / (60 * 60 * 24 * 365);
     }
 
     /**
@@ -77,6 +72,6 @@ public class Moon extends Astronomical_Object{
      */
     @Override
     public String toString() {
-        return "Name: " + name + "\n" + "Orbits: " + orbitingBody.getName() + "\n" + "Mass (in kg): " + massInKg + "kg\n" + "Radius (in km): " + radiusInKm + "\n" + "Gravitational Field Strength: " + calculateGravityNewtonsPerMeter() + " N/kg \n" + "Distance from Star: " + meanOrbitalDistanceKm + " km\n" + "Orbital Period: " + calculateOrbitalPeriodYears() + "years\n" + "Rotational Period: " + rotationalPeriod + "hrs\n";
+        return "Name: " + name + "\n" + "Orbits: " + orbitingBody.getName() + "\n" + "Mass (in kg): " + mass + "kg\n" + "Radius (in km): " + radiusInKm + "\n" + "Gravitational Field Strength: " + calculateGravityNewtonsPerMeter() + " N/kg \n" + "Distance from Star: " + meanOrbitalDistance + " km\n" + "Orbital Period: " + calculateOrbitalPeriodYears() + "years\n" + "Rotational Period: " + rotationalPeriod + "hrs\n";
     }
 }
